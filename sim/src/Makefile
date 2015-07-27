@@ -113,6 +113,12 @@ DRVLIB = /lib/w32api/libws2_32.a /lib/w32api/libiphlpapi.a
 endif
 endif
 
+ifeq ($(CONFIG_SIM_USB),y)
+  CSRCS += up_usbhost.c
+  HOSTSRCS += up_libusbhost.c
+  STDLIBS += -lusb-1.0	
+endif
+
 COBJS = $(CSRCS:.c=$(OBJEXT))
 
 NUTTXOBJS = $(AOBJS) $(COBJS)

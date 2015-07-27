@@ -60,6 +60,12 @@ config SIM_FRAMEBUFFER
 	---help---
 		Build a simulated frame buffer driver"
 
+config SIM_USB
+    bool "Build a simulated USB HOST device using libusb"
+    default n
+    ---help---
+        Build a simulated USB host device using libusb
+
 if SIM_FRAMEBUFFER
 
 config SIM_X11FB

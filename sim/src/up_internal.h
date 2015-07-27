@@ -315,5 +315,12 @@ struct spi_dev_s;
 struct spi_dev_s *up_spiflashinitialize(void);
 #endif
 
+#ifdef CONFIG_SIM_USB
+int sim_usbhost_hotplug_initialize(void);
+int sim_usbhost_drvr_initialize(void);
+int sim_libusb_initialize(void);
+int sim_libusb_hotplug_initialize(void);
+#endif
+
 #endif /* __ASSEMBLY__ */
 #endif /* __ARCH_SIM_SRC_UP_INTERNAL_H */

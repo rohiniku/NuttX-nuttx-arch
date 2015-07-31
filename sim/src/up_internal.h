@@ -318,6 +318,8 @@ struct spi_dev_s *up_spiflashinitialize(void);
 #ifdef CONFIG_SIM_USB
 int sim_usbhost_hotplug_initialize(void);
 int sim_usbhost_drvr_initialize(void);
+int sim_usbhost_enumerate(void);
+int sim_libusb_handle_events(void);
 int sim_libusb_initialize(void);
 int sim_libusb_hotplug_initialize(void);
 #endif

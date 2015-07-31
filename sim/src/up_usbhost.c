@@ -110,6 +110,17 @@ int sim_usbhost_drvr_initialize(void)
   return OK;
 }
 
+int sim_usbhost_enumerate(void)
+{
+  FAR struct sim_usbhost_s *priv = &g_usbhost;
+  FAR struct usbhost_hubport_s *hport = &priv->rhport;
+  int ret;
+
+  ret = usbhost_enumerate(hport, &hport->devclass);
+
+  return ret;
+}
+
 int sim_usbhost_hotplug_initialize(void)
 {
   int ret;

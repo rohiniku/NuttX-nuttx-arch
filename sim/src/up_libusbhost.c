@@ -38,6 +38,7 @@
  *******************************************************************************/
 
 #include <sys/types.h>
+#include <sys/time.h>
 #include <stdint.h>
 #include <stdbool.h>
 #include <stdlib.h>
@@ -74,6 +75,39 @@ static int hotplug_callback(struct libusb_context *ctx,
 
 int sim_libusb_hotplug_initialize(void)
 {
+  libusb_hotplug_callback_handle handle;
+  libusb_hotplug_flag flag;
+  int ret;
+
+#if 0
+  flag = LIBUSB_HOTPLUG_ENUMERATE;
+#else
+  flag = 0;
+#endif
+
+  ret = libusb_hotplug_register_callback(NULL,
+                                         LIBUSB_HOTPLUG_EVENT_DEVICE_ARRIVED |
+                                         LIBUSB_HOTPLUG_EVENT_DEVICE_LEFT,
+                                         flag,
+                                         LIBUSB_HOTPLUG_MATCH_ANY,
+                                         LIBUSB_HOTPLUG_MATCH_ANY,
+                                         LIBUSB_HOTPLUG_MATCH_ANY,
+                                         hotplug_callback, NULL, &handle);
+  if (ret != LIBUSB_SUCCESS)
+    {
+      return -1;
+    }
+  return 0;
+}
+
+int sim_libusb_handle_events(void)
+{
+  struct timeval tv =
+    {
+      .tv_sec = 0,
+      .tv_usec = 0,
+    };
+  libusb_handle_events_timeout_completed(NULL, &tv, NULL);
   return 0;
 }
 

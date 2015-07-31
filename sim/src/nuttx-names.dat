@@ -55,6 +55,7 @@ tcsetattr      NXtcsetattr
 umount2        NXumount2
 unlink         NXunlink
 usleep         NXusleep
+uname          NXuname
 vfork          NXvfork
 write          NXwrite
 zmalloc        NXzmalloc

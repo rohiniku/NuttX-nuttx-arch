@@ -66,6 +66,14 @@ config SIM_USB
     ---help---
         Build a simulated USB host device using libusb
 
+config SIM_ENUMERATE_ATTACHED_USB
+    bool "Enumerate USB devices that are attached prior to start"
+    default n
+    depends on SIM_USB
+    ---help---
+        Create connection events for devices that are already attached
+        prior to starting simulation.
+
 if SIM_FRAMEBUFFER
 
 config SIM_X11FB

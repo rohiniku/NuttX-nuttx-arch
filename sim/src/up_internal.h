@@ -321,7 +321,7 @@ int sim_usbhost_drvr_initialize(void);
 int sim_usbhost_enumerate(void);
 int sim_libusb_handle_events(void);
 int sim_libusb_initialize(void);
-int sim_libusb_hotplug_initialize(void);
+int sim_libusb_hotplug_initialize(bool existing);
 #endif
 
 #endif /* __ASSEMBLY__ */

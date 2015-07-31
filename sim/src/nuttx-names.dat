@@ -8,6 +8,7 @@ free           NXfree
 fclose         NXfclose
 fopen          NXfopen
 fputc          NXfputc
+fputs          NXfputs
 fcntl          NXfcntl
 fread          NXfread
 fwrite         NXfwrite

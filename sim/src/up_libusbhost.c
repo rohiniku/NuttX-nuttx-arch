@@ -57,7 +57,7 @@ static int hotplug_callback(struct libusb_context *ctx,
 {
   int ret;
   struct libusb_device_descriptor desc;
-
+  printf("Found something\n");
   if (event == LIBUSB_HOTPLUG_EVENT_DEVICE_ARRIVED)
     {
       ret = libusb_get_device_descriptor(dev, &desc);
@@ -73,17 +73,17 @@ static int hotplug_callback(struct libusb_context *ctx,
   return 0;
 }
 
-int sim_libusb_hotplug_initialize(void)
+int sim_libusb_hotplug_initialize(bool existing)
 {
   libusb_hotplug_callback_handle handle;
-  libusb_hotplug_flag flag;
+  libusb_hotplug_flag flag = 0;
   int ret;
 
-#if 0
-  flag = LIBUSB_HOTPLUG_ENUMERATE;
-#else
-  flag = 0;
-#endif
+  if (existing)
+    {
+      printf("Looking for existing devices");
+      flag = LIBUSB_HOTPLUG_ENUMERATE;
+    }
 
   ret = libusb_hotplug_register_callback(NULL,
                                          LIBUSB_HOTPLUG_EVENT_DEVICE_ARRIVED |

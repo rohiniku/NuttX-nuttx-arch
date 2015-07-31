@@ -103,7 +103,6 @@ static inline void sim_sw_initialize(struct sim_usbhost_s *priv)
 int sim_usbhost_drvr_initialize(void)
 {
   struct sim_usbhost_s *priv = &g_usbhost;
-
   sim_libusb_initialize();
   sim_sw_initialize(priv);
 
@@ -124,8 +123,15 @@ int sim_usbhost_enumerate(void)
 int sim_usbhost_hotplug_initialize(void)
 {
   int ret;
+  bool existing;
+#if defined(CONFIG_SIM_ENUMERATE_ATTACHED_USB)
+  existing = true;
+  printf("Configured to look for existing\n");
+#else
+  existing = false;
+#endif
   udbg("Registering libusb hotplug detection callbacks\n");
-  ret = sim_libusb_hotplug_initialize();
+  ret = sim_libusb_hotplug_initialize(existing);
   return ret;
 }
 #endif /* CONFIG_USBHOST && CONFIG_SIM_USB */

@@ -69,6 +69,11 @@
  * Public Function Prototypes
  ****************************************************************************/
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
 /****************************************************************************
  * Name: stm32_i2cbus_initialize
  *
@@ -105,4 +110,7 @@ FAR struct i2c_master_s *stm32_i2cbus_initialize(int port);
 
 int stm32_i2cbus_uninitialize(FAR struct i2c_master_s *dev);
 
+#ifdef __cplusplus
+}
+#endif
 #endif /* __ARCH_ARM_SRC_STM32_STM32_I2C_H */
